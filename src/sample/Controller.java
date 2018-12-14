@@ -60,10 +60,5 @@ public class Controller {
         Pretraga pretraga = new Pretraga(home);
         Thread thread = new Thread(pretraga);
         thread.start();
-        /*Thread pomocnaThread = new Thread(() -> {
-            if (!thread.isAlive())
-                traziButton.setDisable(false);
-        });
-        pomocnaThread.start();*/
     }
 }
