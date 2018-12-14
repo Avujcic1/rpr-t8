@@ -1,0 +1,11 @@
+.Ispravno {
+    -fx-control-inner-background: yellowgreen;
+}
+
+.NeIspravno {
+    -fx-control-inner-background: lightpink;
+}
+
+.Neutralno {
+    -fx-control-inner-background: white;
+}

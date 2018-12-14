@@ -9,11 +9,11 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<GridPane alignment="center" hgap="10" prefHeight="335.0" prefWidth="538.0" vgap="10" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
+<GridPane alignment="center" hgap="10" prefHeight="335.0" prefWidth="538.0" vgap="10" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
     <columnConstraints>
         <ColumnConstraints maxWidth="195.0" minWidth="55.0" prefWidth="55.0" />
-        <ColumnConstraints maxWidth="245.0" minWidth="10.0" prefWidth="171.0" />
-        <ColumnConstraints maxWidth="293.0" minWidth="10.0" prefWidth="174.0" />
+        <ColumnConstraints maxWidth="245.0" minWidth="10.0" prefWidth="190.0" />
+        <ColumnConstraints maxWidth="293.0" minWidth="10.0" prefWidth="87.0" />
         <ColumnConstraints maxWidth="293.0" minWidth="10.0" prefWidth="174.0" />
     </columnConstraints>
     <rowConstraints>
@@ -21,11 +21,11 @@
         <RowConstraints />
     </rowConstraints>
     <children>
-        <ListView fx:id="listaPutanja" prefHeight="295.0" prefWidth="598.0" GridPane.columnSpan="4" GridPane.rowIndex="1" />
+        <ListView fx:id="Lista" prefHeight="295.0" prefWidth="598.0" GridPane.columnSpan="4" GridPane.rowIndex="1" />
         <Label text="Uzorak:" />
-        <TextField fx:id="pretragaField" GridPane.columnIndex="1" />
-        <Button fx:id="traziButton" mnemonicParsing="false" onAction="#traziClick" prefHeight="25.0" prefWidth="118.0" text="Traži" GridPane.columnIndex="2" />
-        <Button fx:id="prekiniButton" mnemonicParsing="false" prefHeight="25.0" prefWidth="123.0" text="Prekini" GridPane.columnIndex="3" GridPane.halignment="RIGHT" />
+        <TextField fx:id="pretragaPolja" prefHeight="26.0" prefWidth="128.0" GridPane.columnIndex="1" />
+        <Button fx:id="traziDugme" mnemonicParsing="false" onAction="#Trazi" prefHeight="26.0" prefWidth="50.0" text="Traži" GridPane.columnIndex="2" />
+        <Button fx:id="prekiniDugme" mnemonicParsing="false" onAction="#Prekini" prefHeight="26.0" prefWidth="66.0" text="Prekini" GridPane.columnIndex="3" GridPane.halignment="RIGHT" />
     </children>
     <padding>
         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />

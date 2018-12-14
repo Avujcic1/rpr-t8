@@ -15,12 +15,10 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws Exception{
         Parent root = FXMLLoader.load(getClass().getResource("sample.fxml"));
         primaryStage.setTitle("Pretraga datoteka");
-        primaryStage.getIcons().add(new Image("file:icon.png"));
         primaryStage.setResizable(false);
         primaryStage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
         primaryStage.show();
     }
-
 
     public static void main(String[] args) {
         launch(args);

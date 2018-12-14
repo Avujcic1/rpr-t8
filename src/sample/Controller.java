@@ -10,19 +10,20 @@ import javafx.scene.control.TextField;
 import java.io.File;
 
 public class Controller {
-    public Button traziButton;
-    public TextField pretragaField;
-    public ListView<String> listaPutanja;
-    public Button prekiniButton;
+    public Button traziDugme;
+    public Button prekiniDugme;
+    public TextField pretragaPolja;
+    public ListView<String> Lista;
 
     @FXML
     public void initialize() {
-        prekiniButton.setDisable(true);
-        Thread prekiniThread = new Thread(() -> {
-            if (traziButton.isDisable())
-                prekiniButton.setDisable(false);
+        prekiniDugme.setDisable(true);
+        traziDugme.disabledProperty().addListener((observable, oldValue, newValue) -> {
+            if (!newValue)
+                prekiniDugme.setDisable(true);
+            else
+                prekiniDugme.setDisable(false);
         });
-        prekiniThread.start();
     }
 
     private class Pretraga implements Runnable {
@@ -34,31 +35,42 @@ public class Controller {
 
         @Override
         public void run() {
-            if (korijen.isDirectory()) {
-                File[] listFiles = korijen.listFiles();
+            Pretrazi(korijen, korijen);
+        }
+
+        public void Pretrazi(File korijen, File trenutni) {
+            if (!traziDugme.isDisabled())
+                Thread.currentThread().interrupt();
+            if (trenutni.isDirectory()) {
+                File[] listFiles = trenutni.listFiles();
                 if (listFiles == null)
                     return;
                 for (File file : listFiles) {
                     if (file.isDirectory()) {
-                        Pretraga pretraga = new Pretraga(file.getAbsolutePath());
-                        Platform.runLater(pretraga);
+                        Pretrazi(korijen, file);
                     }
                     if (file.isFile()) {
-                        if (file.getName().contains(pretragaField.getText()))
-                            listaPutanja.getItems().add(file.getAbsolutePath());
+                        if (file.getName().contains(pretragaPolja.getText()))
+                            Platform.runLater(()-> Lista.getItems().add(file.getAbsolutePath()));
                     }
                 }
             }
+            if (korijen.getAbsolutePath().equals(trenutni.getAbsolutePath()))
+                traziDugme.setDisable(false);
         }
     }
 
-    public void traziClick(ActionEvent actionEvent) throws InterruptedException {
-        traziButton.setDisable(true);
-        listaPutanja.getSelectionModel().clearSelection();
-        listaPutanja.getItems().clear();
+    public void Trazi(ActionEvent actionEvent) {
+        traziDugme.setDisable(true);
+        Lista.getSelectionModel().clearSelection();
+        Lista.getItems().clear();
         String home = System.getProperty("user.home");
         Pretraga pretraga = new Pretraga(home);
         Thread thread = new Thread(pretraga);
         thread.start();
+    }
+
+    public void Prekini(ActionEvent actionEvent) {
+        traziDugme.setDisable(false);
     }
 }
